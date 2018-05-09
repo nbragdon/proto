@@ -1,0 +1,22 @@
+There are no external dependencies so running it should be pretty straight forward.
+In Python3 run `python parse_custom_protocol_format.py`
+
+This should output: an array of records reformatted, the length of the array, and a json blob with the answers to the questions.
+
+What is the total amount in dollars of debits? 18203.69953340208
+What is the total amount in dollars of credits? 9366.019984181883
+How many autopays were started? 10
+How many autopays were ended? 8
+What is balance of user ID 2456938384156277127? 0.0
+
+Side Notes:
+The analysis could have been done while reading through the file, results in an O(n) time.
+I decided to first create the translated records and then analyze them because I feel in production code that is most likely
+how the processing would work, resulting in an O(2n) time which technically reduces to O(n) but does add some overhead
+that could be avoided.
+
+The code solves the problem at hand but with some tweaking could be made more generic. You could essentially 
+create a config file processor. The config file would define what the headers are and the size of them, along with the record fields 
+and their sizes. You could use the same conversion function for different types of files, as long as you create the new 
+config for them. 
+
